@@ -1,4 +1,4 @@
-import { KeepAliveOptions } from './resilient-http.types.js';
+import { KeepAliveOptions } from './http.types.js';
 import { Agent as HttpAgent } from 'http';
 import { Agent as HttpsAgent } from 'https';
 
