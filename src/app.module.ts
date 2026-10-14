@@ -15,8 +15,15 @@ import { UpstreamController } from './demo/upstream.controller.js';
         maxSockets: 128,
         maxFreeSockets: 32,
       },
+      idempotency: {
+        enabled: true,
+        methods: ['post', 'patch'],
+      },
+      circuitBreaker: {
+        timeoutMs: 20_000,
+      },
       retry: {
-        retries: 3,
+        retries: 0,
       },
     }),
   ],

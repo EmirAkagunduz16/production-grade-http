@@ -14,7 +14,7 @@ export class DemoController {
       const { data } = await this.http.get('/upstream/unstable', {
         params: { failRate },
       });
-      return { upstream: data };
+      return { upstream: data, breaker: this.http.getBreakerStats() };
     } catch (error) {
       if (error instanceof AxiosError) {
         const status = error.response?.status ?? 500;
@@ -24,6 +24,19 @@ export class DemoController {
       }
       throw error;
     }
+  }
+
+  @Get('create-order')
+  async createOrder(@Query('key') key = 'demo-key') {
+    const { data } = await this.http.post(
+      '/upstream/create-order',
+      {
+        sku: 'widget-42',
+        qt1: 1,
+      },
+      { headers: { 'Idempotency-Key': key } },
+    );
+    return data;
   }
 
   @Get('keepAlive')

@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, Method } from 'axios';
 import { HttpModuleOptions } from './http.types.js';
 import { createPooledAgents } from './agents.js';
 import axiosRetry, { isNetworkError, isRetryableError } from 'axios-retry';
+import { attachIdempotencyInterceptor } from './idempotency.interceptor.js';
 
 const DEFAULT_RETRY_METHODS: Method[] = [
   'get',
@@ -66,6 +67,8 @@ export function createAxiosInstance(options: HttpModuleOptions): AxiosInstance {
     retryDelay: exponentialJitterDelay(minDelay, maxDelay),
     shouldResetTimeout: true,
   });
+
+  attachIdempotencyInterceptor(instance, options.idempotency);
 
   return instance;
 }

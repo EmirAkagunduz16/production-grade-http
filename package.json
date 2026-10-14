@@ -30,7 +30,8 @@
     "lil-http-terminator": "^1.2.3",
     "opossum": "^10.0.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "uuid": "^14.0.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^12.0.0",
@@ -39,6 +40,7 @@
     "@nestjs/testing": "^12.0.1",
     "@types/express": "^5.0.0",
     "@types/node": "^24.0.0",
+    "@types/opossum": "^8.1.9",
     "@types/supertest": "^7.0.0",
     "@vitest/coverage-v8": "^4.1.2",
     "oxlint": "^1.58.0",
